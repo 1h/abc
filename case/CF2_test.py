@@ -158,7 +158,7 @@ class CF2(unittest.TestCase):
         # 页面提交
         dr.switch_to.frame('mainFrame')
         dr.find_element_by_css_selector('[class="btn btn-lg btn-danger"]').click()
-        dr.switch_to.parent_frame( )
+        dr.switch_to.parent_frame()
         dr.find_element_by_class_name('layui-layer-btn0').click()
         dr.find_element_by_class_name('layui-layer-btn0').click()
         print('提交成功')

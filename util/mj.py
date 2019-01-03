@@ -13,6 +13,7 @@ class MJ:
         password = getConfig("MJ", "password")
         data = {"doLogin": doLogin, "username": username, "password": password}
         response = requests.post(url, data=data)
+        print(response.content)
         return response.content
 
 
