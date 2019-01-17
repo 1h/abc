@@ -13,7 +13,6 @@ from datetime import datetime
 from util.get_config import getConfig
 
 
-
 class K1(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -65,7 +64,7 @@ class K1(unittest.TestCase):
         n4.send_keys(Keys.ENTER)
         n5 = dr.find_element_by_name('customerName')
         n5.click()
-        n6 = dr.find_elements_by_css_selector('[class="ace ace-checkbox-2"]')[1]
+        n6 = dr.find_elements_by_css_selector('[class="ace ace-checkbox-2"]')[0]
         n6.send_keys(Keys.SPACE)
         n7 = dr.find_element_by_id('orderSubmit')
         n7.click()
