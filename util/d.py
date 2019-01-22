@@ -1,20 +1,11 @@
-from functools import wraps
-
-
-def logged(func):
-    @wraps(func)
-    def with_logging(*args, **kwargs):
-        # print(func.__name__)      # 输出 'with_logging'
-        # print(func.__doc__)       # 输出 None
-        return func(*args, **kwargs)
-    return with_logging
-
-
-# 函数
-@logged
-def f(x):
-    """does some math"""
-    return x + x * x
-
-
-f(1)
+a=[('a','b','c','d','e','f','g','h'),('aa','bb','cc','dd','ee','ff','gg','hh'),('aaa','bbb','ccd','ddd','eee','fff','ggg','hhh')]
+b=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+c={}
+d=[]
+for j in a:
+    for n,i in zip(j,b):
+        c[i]=n
+        print(c)
+    d.append(c)
+    c={}
+print(d)

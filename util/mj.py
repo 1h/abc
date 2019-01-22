@@ -42,11 +42,18 @@ def dict_get(dict, objkey, default):
     for k, v in tmp.items():
         if k == objkey:
             return v
-    else:
-        if type(v).__name__ == 'dict':
-            ret = dict_get(v, objkey, default)
-            if ret is not default:
-                return ret
+        else:
+            if type(v).__name__ == 'dict':
+                ret = dict_get(v, objkey, default)
+                if ret is not default:
+                    return ret
+            elif type(v).__name__ == 'list':
+                if type(v[0]).__name__ == 'dict':
+                    for i in range(len(v)):
+                        for m, n in v[i]:
+                            ret = dict_get(v[i], objkey, default)
+                            if ret is not default:
+                                return ret
     return default
 
 
@@ -56,7 +63,6 @@ def mj_add_paytype():
     if len(a) > 0:
         for c in a:
             url = getConfig("MJ", "url3")
-            house_id = c
             data = {"houseId": c}
             rs = login().post(url=url, data=data)
             house_dump = rs.text

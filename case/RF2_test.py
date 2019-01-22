@@ -22,8 +22,9 @@ class RF2(unittest.TestCase):
         cls.driver.implicitly_wait(3)
         cls.pg = Index(cls.driver)
 
-        global burl, captcha, login_list, name, action, text, position, order_type, start_time
+        global burl, eurl, captcha, login_list, name, action, text, position, order_type, start_time
         burl = getConfig("RF2", "burl")
+        eurl = getConfig("Eh5", "url")
         captcha = getConfig("RF2", "captcha")
         l1 = getConfig("RF2", "login_list")
         login_list = eval(l1)
@@ -117,8 +118,8 @@ class RF2(unittest.TestCase):
         m10 = dr.find_element_by_name('housingInfoBean.rentalPrice')
         m10.clear()
         m10.send_keys(1360)
-        if pg.is_element_exist('id', 'houseArea'):
-            dr.find_element_by_id('houseArea').send_keys('89')
+        # if pg.is_element_exist('id', 'houseArea'):
+        #     dr.find_element_by_id('houseArea').send_keys('89')
         s3 = Select(dr.find_element_by_id('timeLimit'))
         s3.select_by_index(1)
 
@@ -126,7 +127,7 @@ class RF2(unittest.TestCase):
         dr.execute_script(js3)
         t4 = dr.find_element_by_id('planLoanTime')
         t4.clear()
-        t4.send_keys('2018-12-31')
+        t4.send_keys('2019-01-23')
         m9.click()
 
         js3 = "var q=document.documentElement.scrollTop=100000"
@@ -174,7 +175,7 @@ class RF2(unittest.TestCase):
 
     def test_18esign(self):
         pg = self.pg
-        pg.esign()
+        pg.esign(eurl)
 
     def test_19hetong1(self):
         pg = self.pg

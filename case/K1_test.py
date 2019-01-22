@@ -21,12 +21,13 @@ class K1(unittest.TestCase):
                    'download.default_directory': "D:\\AutoTest\\PDF"}
         options.add_experimental_option("prefs", profile)
         cls.driver = webdriver.Chrome(chrome_options=options)
-        cls.driver.maximize_window( )
+        cls.driver.maximize_window()
         cls.driver.implicitly_wait(3)
         cls.pg = Index(cls.driver)
 
-        global burl, captcha, login_list, name, action, text, position, order_type, start_time
+        global burl, eurl, captcha, login_list, name, action, text, position, order_type, start_time
         burl = getConfig("K1", "burl")
+        eurl = getConfig("Eh5", "url")
         captcha = getConfig("K1", "captcha")
         l1 = getConfig("K1", "login_list")
         login_list = eval(l1)
@@ -174,7 +175,7 @@ class K1(unittest.TestCase):
 
     def test_18esign(self):
         pg = self.pg
-        pg.esign()
+        pg.esign(eurl)
 
     def test_19hetong1(self):
         pg = self.pg

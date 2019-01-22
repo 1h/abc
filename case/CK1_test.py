@@ -25,8 +25,9 @@ class CK1(unittest.TestCase):
         cls.driver.implicitly_wait(3)
         cls.pg = Index(cls.driver)
 
-        global burl, captcha, login_list, name, action, text, position, order_type, start_time
+        global burl, eurl, captcha, login_list, name, action, text, position, order_type, start_time
         burl = getConfig("CK1", "burl")
+        eurl = getConfig("Eh5", "url")
         captcha = getConfig("CK1", "captcha")
         l1 = getConfig("CK1", "login_list")
         login_list = eval(l1)
@@ -190,7 +191,7 @@ class CK1(unittest.TestCase):
 
     def test_18esign(self):
         pg = self.pg
-        pg.esign()
+        pg.esign(eurl)
 
     def test_19hetong1(self):
         pg = self.pg

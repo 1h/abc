@@ -101,12 +101,12 @@ class Index:
         except Exception as e:
             print("Exception found", format(e))
 
-    def esign(self):
+    def esign(self, url):
         dr = self.dr
-        dr.get('https://admin-testa.panguyr.tech/pg-wechat/pg-wechat.html#/login')
+        dr.get(url)
         dr.find_element_by_css_selector(
             'input[placeholder="请输入手机号码"]').send_keys('15657168150')
-        dr.find_element_by_class_name('login-code').click( )
+        dr.find_element_by_class_name('login-code').click()
         dr.find_element_by_css_selector(
             'input[placeholder="请输入验证码"]').send_keys('123456')
         sleep(1)
