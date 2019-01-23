@@ -41,17 +41,17 @@ class Index:
         dr.get(url)
         into_btn = dr.find_element_by_xpath(
             '//*[@id="login"]/div[2]/div[4]/a[2]')
-        ActionChains(dr).click(into_btn).perform( )
+        ActionChains(dr).click(into_btn).perform()
         dr.find_element_by_id(
             'ipt-mobile').send_keys(mobile)
         get_btn = dr.find_element_by_xpath(
             '//*[@id="login"]/div[2]/div[2]/button/span')
-        ActionChains(dr).click(get_btn).perform( )
+        ActionChains(dr).click(get_btn).perform()
         dr.find_element_by_id(
             'ipt-code').send_keys(volidcode)
         sleep(1)
         login_btn = dr.find_element_by_id('btn-login')
-        ActionChains(dr).click(login_btn).perform( )
+        ActionChains(dr).click(login_btn).perform()
         try:
             wait(dr, 100).until_not(EC.visibility_of_element_located(
                 (By.ID, 'btn-login')))
@@ -63,19 +63,19 @@ class Index:
         dr.get(url)
         into_btn = dr.find_element_by_xpath(
             '//*[@id="login"]/div[2]/div[4]/a[1]')
-        ActionChains(dr).click(into_btn).perform( )
+        ActionChains(dr).click(into_btn).perform()
         sleep(1)
         dr.find_element_by_id(
             'ipt-mobile').send_keys(mobile)
         get_btn = dr.find_element_by_xpath(
             '//*[@id="forget"]/div[2]/div[2]/button/span')
-        ActionChains(dr).click(get_btn).perform( )
+        ActionChains(dr).click(get_btn).perform()
         dr.find_element_by_id(
             'ipt-code').send_keys(volidcode)
         sleep(1)
         dr.find_element_by_id('ipt-pwd').send_keys(password)
         confirm_btn = dr.find_element_by_id('btn-confirm')
-        ActionChains(dr).click(confirm_btn).perform( )
+        ActionChains(dr).click(confirm_btn).perform()
         try:
             wait(dr, 100).until_not(EC.visibility_of_element_located(
                 (By.ID, 'btn-confirm')))
@@ -94,7 +94,7 @@ class Index:
                 (By.ID, 'btn-login')))
         except Exception as e:
             print("Exception found", format(e))
-        dr.find_element_by_id('btn-login').click( )
+        dr.find_element_by_id('btn-login').click()
         try:
             wait(dr, 100).until_not(EC.visibility_of_element_located(
                 (By.ID, 'btn-login')))
@@ -112,11 +112,11 @@ class Index:
         sleep(1)
         wait(dr, 10).until(EC.visibility_of_element_located(
             (By.CLASS_NAME, 'mint-button-text')))
-        dr.find_element_by_css_selector('div.btn-wrap').click( )
+        dr.find_element_by_css_selector('div.btn-wrap').click()
         sleep(1)
-        dr.find_element_by_css_selector('a.mint-cell').click( )
+        dr.find_element_by_css_selector('a.mint-cell').click()
         sleep(1)
-        dr.find_element_by_css_selector('div.btn-sign-wrap').click( )
+        dr.find_element_by_css_selector('div.btn-sign-wrap').click()
         try:
             wait(dr, 100).until_not(EC.visibility_of_element_located(
                 (By.CLASS_NAME, 'mint-button-text')))
@@ -131,18 +131,18 @@ class Index:
         for num in zip(list1, list2):
             if num[1] != '房东身份证明' and order_type != 'type_c':
                 dr.switch_to.frame('mainFrame')
-            dr.find_element_by_id(num[0]).click( )
+            dr.find_element_by_id(num[0]).click()
             if order_type != 'type_c':
-                dr.switch_to.parent_frame( )
+                dr.switch_to.parent_frame()
             file_add = 'D:/AutoTest/unittest/res/PNG/a' + str(pic_id) + '.png'
             frame_add = 'layui-layer-iframe' + str(frame_id)
             wait(dr, 10).until(
                 EC.frame_to_be_available_and_switch_to_it(frame_add))
             dr.find_element_by_id('fileImage').send_keys(file_add)
-            dr.find_element_by_id('startUpload').click( )  # 点击上传按钮
+            dr.find_element_by_id('startUpload').click()  # 点击上传按钮
             wait(dr, 10).until(EC.visibility_of_element_located(
                 (By.ID, 'uploadSuccess_0')))
-            dr.find_element_by_id('close_btn').click( )
+            dr.find_element_by_id('close_btn').click()
             wait(dr, 10).until_not(
                 EC.visibility_of_element_located((By.ID, 'close_btn')))
             print(num[1] + '上传成功')

@@ -49,7 +49,7 @@ class RF2(unittest.TestCase):
         dr = self.driver
         fake = Faker('zh_CN')
         pg.admin_login(burl, name[0], login_list[name[0]], captcha)
-        l1 = dr.find_elements_by_css_selector('[class="dropdown-toggle"]')[9]
+        l1 = dr.find_elements_by_css_selector('[class="dropdown-toggle"]')[5]
         l1.click()
         l2 = dr.find_element_by_css_selector('a[href="continue/watingContinueLoanList"]')
         l2.click()

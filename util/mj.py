@@ -50,10 +50,9 @@ def dict_get(dict, objkey, default):
             elif type(v).__name__ == 'list':
                 if type(v[0]).__name__ == 'dict':
                     for i in range(len(v)):
-                        for m, n in v[i]:
-                            ret = dict_get(v[i], objkey, default)
-                            if ret is not default:
-                                return ret
+                        ret = dict_get(v[i], objkey, default)
+                        if ret is not default:
+                            return ret
     return default
 
 
