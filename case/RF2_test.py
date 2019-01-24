@@ -127,7 +127,7 @@ class RF2(unittest.TestCase):
         dr.execute_script(js3)
         t4 = dr.find_element_by_id('planLoanTime')
         t4.clear()
-        t4.send_keys('2019-01-23')
+        t4.send_keys(datetime.now().strftime("%Y-%m-%d"))
         m9.click()
 
         js3 = "var q=document.documentElement.scrollTop=100000"
