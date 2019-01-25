@@ -48,12 +48,19 @@ def dict_get(dict, objkey, default):
                 if ret is not default:
                     return ret
             elif type(v).__name__ == 'list':
-                if type(v[0]).__name__ == 'dict':
-                    for i in range(len(v)):
-                        ret = dict_get(v[i], objkey, default)
-                        if ret is not default:
-                            return ret
-    return default
+                for i in v:
+                    if type(i).__name__ == 'dict':
+                        ret = dict_get(i, objkey, default)
+                        # if ret is not default:
+                        #     return ret
+                    elif type(i).__name__ == 'list':
+                        for l in i:
+                            ret = dict_get(l, objkey, default)
+                            if ret is not default:
+                                return ret
+            else:
+                continue
+        return default
 
 
 def mj_add_paytype():
