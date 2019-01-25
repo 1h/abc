@@ -301,16 +301,16 @@ class Index:
         flag = True
         try:
             if istype == 'xpath':
-                dr.find_element_by_xpath(element)
+                dr.find_element_by_xpath(element) and EC.visibility_of_element_located((By.XPATH, element))
                 return flag
             elif istype == 'id':
-                dr.find_element_by_id(element)
+                dr.find_element_by_id(element) and EC.visibility_of_element_located((By.ID, element))
                 return flag
             elif istype == 'class_name':
-                dr.find_element_by_class_name(element)
+                dr.find_element_by_class_name(element) and EC.visibility_of_element_located((By.CLASS_NAME, element))
                 return flag
             elif istype == 'css_selector':
-                dr.find_elements_by_css_selector(element)
+                dr.find_elements_by_css_selector(element) and EC.visibility_of_element_located((By.CSS_SELECTOR, element))
                 return flag
         except:
             flag = False
