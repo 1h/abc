@@ -118,8 +118,8 @@ class RF2(unittest.TestCase):
         m10 = dr.find_element_by_name('housingInfoBean.rentalPrice')
         m10.clear()
         m10.send_keys(1360)
-        if pg.is_element_exist('id', 'houseArea'):
-            dr.find_element_by_id('houseArea').send_keys('89')
+        # if pg.is_element_exist('id', 'houseArea'):
+        #     dr.find_element_by_id('houseArea').send_keys('89')
         s3 = Select(dr.find_element_by_id('timeLimit'))
         s3.select_by_index(1)
 
