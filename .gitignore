@@ -1,9 +1,7 @@
 *.pyc
-/.vscode/
-.idea/
+.vscode
+.idea
 case/F1/test/report.html
 case/F1/test/assets/
-util/a.conf
-/util/b.conf
-/util/c.conf
-/case/debug.log
+*.conf
+*.log
