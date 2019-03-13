@@ -129,7 +129,7 @@ class Index:
         dr = self.dr
         pic_id = 1
         for num in zip(list1, list2):
-            if num[1] != '房东身份证明' and order_type != 'type_c':
+            if num[1] != '房东身份证明':
                 dr.switch_to.frame('mainFrame')
             dr.find_element_by_id(num[0]).click()
             if order_type != 'type_c':

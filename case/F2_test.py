@@ -20,6 +20,9 @@ class F2(unittest.TestCase):
         profile = {'plugins.plugins_list': [{"enabled": False, "name": "Chrome PDF Viewer"}],
                    'download.default_directory': "D:\\AutoTest\\PDF"}
         options.add_experimental_option("prefs", profile)
+        # options.add_argument('--headless')
+        # options.add_argument('--disable-gpu')
+        # options.add_argument('window-size=1920,1080')
         cls.driver = webdriver.Chrome(chrome_options=options)
         cls.driver.maximize_window()
         cls.driver.implicitly_wait(3)
@@ -135,11 +138,17 @@ class F2(unittest.TestCase):
         t3.click()
 
         m11 = dr.find_element_by_name('housingInfoBean.rentalPrice')
-        m11.send_keys(1250)
+        m11.send_keys('0.09')
         if pg.is_element_exist('id', 'houseArea'):
             dr.find_element_by_id('houseArea').send_keys('89')
         s2 = Select(dr.find_element_by_id('timeLimit'))
         s2.select_by_index(2)
+        s3 = Select(dr.find_element_by_id('serviceChargeType'))
+        s3.select_by_index(2)
+        s4 = Select(dr.find_element_by_id('serviceChargeIssue'))
+        s4.select_by_index(1)
+        s5 = Select(dr.find_element_by_id('contractAmountType'))
+        s5.select_by_index(1)
 
         js3 = "var q=document.documentElement.scrollTop=100000"
         dr.execute_script(js3)
