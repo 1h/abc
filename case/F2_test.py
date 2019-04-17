@@ -58,27 +58,32 @@ class F2(unittest.TestCase):
         wait(dr, 10).until(EC.title_is('消费金融系统'))
         n1 = dr.find_element_by_class_name('menu-text')
         n1.click()
-        n2 = dr.find_element_by_css_selector('a[href="sales/wfAllMyOrderIndex"]')
+        n2 = dr.find_element_by_css_selector(
+            'a[href="sales/wfAllMyOrderIndex"]')
         n2.click()
         wait(dr, 10).until(EC.frame_to_be_available_and_switch_to_it('mainFrame'))
-        n3 = dr.find_elements_by_css_selector('[class="btn btn-danger btn-sm"]')[0]
+        n3 = dr.find_elements_by_css_selector(
+            '[class="btn btn-danger btn-sm"]')[0]
         n3.click()
         n4 = dr.find_element_by_name('cardId')
         n4.send_keys('330122199008151710')
         n4.send_keys(Keys.ENTER)
         n5 = dr.find_element_by_name('customerName')
         n5.click()
-        n6 = dr.find_elements_by_css_selector('[class="ace ace-checkbox-2"]')[0]
+        n6 = dr.find_elements_by_css_selector(
+            '[class="ace ace-checkbox-2"]')[0]
         n6.send_keys(Keys.SPACE)
         n7 = dr.find_element_by_id('orderSubmit')
         n7.click()
         # 有时有问题 有时没有
         # wait(dr, 10).until(EC.frame_to_be_available_and_switch_to_it('mainFrame'))
         order_id = pg.get_house_id(order_type)
-        n8 = dr.find_element_by_xpath('//*[@id="2_' + order_id + '"]/td[6]/button')
+        n8 = dr.find_element_by_xpath(
+            '//*[@id="2_' + order_id + '"]/td[6]/button')
         n8.click()
         dr.switch_to.parent_frame()
-        wait(dr, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'layui-layer-min')))
+        wait(dr, 10).until(EC.visibility_of_element_located(
+            (By.CLASS_NAME, 'layui-layer-min')))
         js4 = "document.querySelector('.layui-layer-setwin').children[2].click()"
         dr.execute_script(js4)
         dr.switch_to.frame('mainFrame')  # 切回主frame
@@ -86,7 +91,8 @@ class F2(unittest.TestCase):
         s1.select_by_value('01')
         l1 = dr.find_element_by_name('housingInfoBean.propertyEnterpriceName')
         l1.clear()
-        l2 = dr.find_element_by_name('housingInfoBean.propertyEnterpriceAddress')
+        l2 = dr.find_element_by_name(
+            'housingInfoBean.propertyEnterpriceAddress')
         l2.clear()
         l3 = dr.find_element_by_name('housingInfoBean.propertyBusinessLicense')
         l3.clear()
@@ -108,7 +114,8 @@ class F2(unittest.TestCase):
         m8.clear()
         m9 = dr.find_element_by_name('housingInfoBean.landlordCardNo')
         m9.clear()
-        m10 = dr.find_element_by_name('housingInfoBean.landlordAccountingBranch')
+        m10 = dr.find_element_by_name(
+            'housingInfoBean.landlordAccountingBranch')
         m10.clear()
 
         m1.send_keys(fake.ean13())
@@ -155,44 +162,54 @@ class F2(unittest.TestCase):
 
         # 图片上传
         frame_id = 2
-        list1 = ['num_0101', 'num_0102', 'num_0104', 'num_0105', 'num_0106', 'num_0107', 'num_0108']
-        list2 = ['房东身份证明', '产权证明', '收款银行卡', '房源现场照片', '双签收房合同', '现场签约照片', '付租相关']
+        list1 = ['num_0101', 'num_0102', 'num_0104',
+                 'num_0105', 'num_0106', 'num_0107', 'num_0108']
+        list2 = ['房东身份证明', '产权证明', '收款银行卡',
+                 '房源现场照片', '双签收房合同', '现场签约照片', '付租相关']
         pg.pic_upload(order_type, frame_id, list1, list2)
 
         # 页面提交
         dr.switch_to.frame('mainFrame')
-        dr.find_element_by_css_selector('[class="btn btn-lg btn-danger"]').click()
+        dr.find_element_by_css_selector(
+            '[class="btn btn-lg btn-danger"]').click()
         dr.switch_to.parent_frame()
         dr.find_element_by_class_name('layui-layer-btn0').click()
         dr.find_element_by_class_name('layui-layer-btn0').click()
         print('提交成功')
 
         # 查找生成的订单ID
-        globals()["xp"], globals()["oid"] = pg.get_order_id(start_time, order_type, burl, name[0], login_list[name[0]], captcha)
+        globals()["xp"], globals()["oid"] = pg.get_order_id(
+            start_time, order_type, burl, name[0], login_list[name[0]], captcha)
 
     def test_12reject(self):
         pg = self.pg
-        pg.deal(burl, name[1], login_list[name[1]], captcha, position[0], globals()["xp"], text[0], action[1])
+        pg.deal(burl, name[1], login_list[name[1]], captcha,
+                position[0], globals()["xp"], text[0], action[1])
 
     def test_13resubmit(self):
         pg = self.pg
-        pg.deal(burl, name[0], login_list[name[0]], captcha, position[1], globals()["xp"], text[1], action[0])
+        pg.deal(burl, name[0], login_list[name[0]], captcha,
+                position[1], globals()["xp"], text[1], action[0])
 
     def test_14zhonghe(self):
         pg = self.pg
-        pg.deal(burl, name[1], login_list[name[1]], captcha, position[0], globals()["xp"], text[2], action[0])
+        pg.deal(burl, name[1], login_list[name[1]], captcha,
+                position[0], globals()["xp"], text[2], action[0])
 
     def test_15fengkong(self):
         pg = self.pg
-        pg.deal(burl, name[2], login_list[name[2]], captcha, position[2], globals()["xp"], text[3], action[0])
+        pg.deal(burl, name[2], login_list[name[2]], captcha,
+                position[2], globals()["xp"], text[3], action[0])
 
     def test_16fuzheren(self):
         pg = self.pg
-        pg.deal(burl, name[3], login_list[name[3]], captcha, position[3], globals()["xp"], text[4], action[0])
+        pg.deal(burl, name[3], login_list[name[3]], captcha,
+                position[3], globals()["xp"], text[4], action[0])
 
     def test_17hegui(self):
         pg = self.pg
-        pg.deal(burl, name[4], login_list[name[4]], captcha, position[4], globals()["xp"], text[5], action[0])
+        pg.deal(burl, name[4], login_list[name[4]], captcha,
+                position[4], globals()["xp"], text[5], action[0])
 
     def test_18esign(self):
         pg = self.pg
@@ -200,20 +217,25 @@ class F2(unittest.TestCase):
 
     def test_19hetong1(self):
         pg = self.pg
-        pg.deal(burl, name[1], login_list[name[1]], captcha, position[5], globals()["xp"], text[6], action[0])
+        pg.deal(burl, name[1], login_list[name[1]], captcha,
+                position[5], globals()["xp"], text[6], action[0])
 
     def test_20hetong2(self):
         pg = self.pg
-        pg.deal(burl, name[1], login_list[name[1]], captcha, position[6], globals()["xp"], text[7], action[0])
+        pg.deal(burl, name[1], login_list[name[1]], captcha,
+                position[6], globals()["xp"], text[7], action[0])
 
     def test_21zongcai(self):
         pg = self.pg
-        pg.deal(burl, name[5], login_list[name[5]], captcha, position[7], globals()["xp"], text[8], action[0])
+        pg.deal(burl, name[5], login_list[name[5]], captcha,
+                position[7], globals()["xp"], text[8], action[0])
 
     def test_22zjhs(self):
         pg = self.pg
-        pg.deal(burl, name[6], login_list[name[6]], captcha, position[8], globals()["xp"], text[9], action[2])
+        pg.deal(burl, name[6], login_list[name[6]], captcha,
+                position[8], globals()["xp"], text[9], action[2])
 
     def test_23deaf(self):
         pg = self.pg
-        pg.deal(burl, name[0], login_list[name[0]], captcha, position[1], globals()["xp"], text[10], action[0])
+        pg.deal(burl, name[0], login_list[name[0]], captcha,
+                position[1], globals()["xp"], text[10], action[0])
